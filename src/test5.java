@@ -3,24 +3,19 @@ import java.util.Scanner;
 
 public class test5 {
     public static void main(String[] args) {
-        System.out.println("Введите число: ");
-        Scanner scanner = new Scanner(System.in)
-        int len = scanner.nextInt();
-
-        if (len == 5)
-        {
-            if ([0] == number[4] && number[1] == number[3])
-            {
-                System.out.println("{number} - Палиндром");
-            }
-            else
-            {
-                System.out.println("{number} - НЕ палиндром");
-            }
+        Scanner scanner = new Scanner(System.in);
+        int num = String.valueOf(scanner).length();
+        int first = scanner.nextInt();
+        int second = 0;
+        for (int i = 0; i < num / 2; i++){
+            second = second * 10 + first % 10;
+            first /= 10;
         }
-        else
-        {
-            System.out.println("ОШИБКА: {number} - не является пятизначным");
+        if(first == second){
+            System.out.println("Палидром");
+        }
+        else {
+            System.out.println("Неполидром");
         }
     }
 }

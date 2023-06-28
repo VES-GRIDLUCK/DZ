@@ -1,23 +1,45 @@
+import java.time.Instant;
 import java.util.Arrays;
+import java.util.Date;
 
 public class test6 {
     public static void main(String[] args) {
-        int count = 0;
-        for (int i = 0; i < 99999999; ++i)
-        {
-            char[] charArray = Integer.toString(1).toCharArray();
-            Arrays.sort(charArray);
-            for (int j = 0; j < charArray.length-2; ++j)
-            {
-                if (charArray[i] == charArray[i+1])
-                    break;
-                if (i % 12345 == 0)
-                {
-                    System.out.println(i);
-                    ++count;
+        Date date = Date.from(Instant.now());
+        long timeStart = date.getTime();
+        int temp = 0;
+        for (int i = 1000000; i < 10000000; ++i) {
+            int number = i;
+            int step = 0;
+            boolean isUnique = true;
+            b1 : while (number > 0 && isUnique) {
+                int tempCifra = number % 10;
+                int stepTamp = 0;
+                int numberTemp = i;
+                while (numberTemp > 0 && isUnique) {
+                    int tempCifra1 = numberTemp % 10;
+                    if (step == stepTamp) {
+                        numberTemp /= 10;
+                        stepTamp++;
+                        continue;
+                    }
+                    if (tempCifra1 == tempCifra) {
+                        isUnique = false;
+                        break b1;
+                    }
+                    numberTemp /= 10;
+                    stepTamp++;
                 }
+                number /= 10;
+                step++;
             }
+            if (isUnique)
+                System.out.println(i);
+            temp++;
         }
-        System.out.println(String.format("Общее количество найденных чисел", count));
+        Date date2 = Date.from(Instant.now());
+        long timeFinish = date2.getTime();
+        System.out.println(timeFinish - timeStart);
+        System.out.println(temp);
+
     }
 }
